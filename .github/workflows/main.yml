@@ -21,13 +21,12 @@ jobs:
         run: |
           cordova create myApp com.muhtar.app "2048 Oyunum"
           rm -rf myApp/www/*
-          # Yüklediğin index.icon.zip dosyasını açar:
           unzip index.icon.zip -d myApp/www/
           
       - name: Set Custom Icon
         run: |
           mkdir -p myApp/res/icon/android
-          cp myApp/www/icon.png myApp/res/icon/android/icon.png
+          cp icon.png myApp/res/icon/android/icon.png
           sed -i '/<\/platform>/i \    <icon src="res/icon/android/icon.png" platform="android" width="512" height="512" \/>' myApp/config.xml
           
       - name: Build Android
@@ -41,4 +40,5 @@ jobs:
         with:
           name: oyun-iconlu-apk
           path: myApp/platforms/android/app/build/outputs/apk/debug/app-debug.apk
+
 
